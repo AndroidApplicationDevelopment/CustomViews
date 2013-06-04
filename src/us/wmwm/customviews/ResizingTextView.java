@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,8 @@ public class ResizingTextView extends View {
 	String txt;
 	
 	Paint paint;
+	
+	Rect textBounds = new Rect();
 	
 
 	public ResizingTextView(Context context, AttributeSet attrs) {
@@ -58,6 +61,7 @@ public class ResizingTextView extends View {
 		
 		paint.setColor(Color.BLACK);
 		paint.setStyle(Style.STROKE);
+		
 		canvas.drawText(txt, 15, 15, paint);
 		
 	}
@@ -71,9 +75,9 @@ public class ResizingTextView extends View {
 //        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
 //        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
         
-        float width = paint.measureText(txt);      
+		paint.getTextBounds(txt, 0, txt.length(), textBounds);
         
-        Log.d("onMeasure", width+"");
+        Log.d("onMeasure", textBounds.toShortString());
         
         //setMeasuredDimension(getMeasuredWidth(), );
 		
