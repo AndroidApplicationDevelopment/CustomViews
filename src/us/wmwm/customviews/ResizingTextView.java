@@ -48,7 +48,6 @@ public class ResizingTextView extends View {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		
-		paint.setTextSize(14);
 		paint.setStyle(Style.FILL_AND_STROKE);
 		Log.d("onDraw", "drawing text " + getMeasuredWidth() + " " + getMeasuredHeight());
 		
@@ -70,12 +69,30 @@ public class ResizingTextView extends View {
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 		
-//		final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-//        final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-//        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-//        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+		final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+              
         
-		paint.getTextBounds(txt, 0, txt.length(), textBounds);
+        float lastSize = 0.5f;
+        paint.setTextSize(lastSize);        
+        while(true) {        	
+        	paint.getTextBounds(txt, 0, txt.length(), textBounds);
+        	if(textBounds.width()>widthSize) {
+        		break;
+        	}
+        	if(textBounds.height()>heightSize) {
+        		break;
+        	}
+        	lastSize*=2f;
+        	paint.setTextSize(lastSize);
+        	Log.d("onMeasure.while", lastSize+"");
+        }
+        
+		
+		
+		Log.d("onMeasure", widthSize + ", " + heightSize);
         
         Log.d("onMeasure", textBounds.toShortString());
         
