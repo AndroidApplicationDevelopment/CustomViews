@@ -9,10 +9,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <us.wmwm.customviews.ResizingTextView
+    <us.wmwm.customviews.MyButton
         android:layout_width="500dp"
         android:layout_height="200dp"
         android:background="#666"
-        app:text="Whatever" />
+        app:text="Whatever"
+        android:text="Whatever"
+         />
 
 </RelativeLayout>
