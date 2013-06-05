@@ -71,6 +71,7 @@ public class ResizingTextView extends View {
 		
 		final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
               
@@ -95,9 +96,7 @@ public class ResizingTextView extends View {
 		
 		Log.d("onMeasure", widthSize + ", " + heightSize);
         
-        Log.d("onMeasure", textBounds.width() + ", " + textBounds.height());
-        
-        //setMeasuredDimension(getMeasuredWidth(), );
+        Log.d("onMeasure", textBounds.width() + ", " + textBounds.height());      
 		
 	}
 	
